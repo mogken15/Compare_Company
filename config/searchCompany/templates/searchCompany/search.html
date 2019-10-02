@@ -1,0 +1,135 @@
+{% extends "searchCompany/base.html" %}
+{% load i18n static %}
+{% block content %}
+
+      <!-- Promo Block -->
+      <section class="js-parallax u-promo-block u-promo-block--mheight-100  text-black" style="background-image: url(../../static/searchCompany/img-temp/1920x1080/img1.jpg);">
+        <!-- Promo Content -->
+        <div class="container u-overlay__inner u-ver-center u-content-space">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="text-left">
+                <p class="text-uppercase u-letter-spacing-sm"></p>
+                <h4 class="display-sm-4 display-lg-3">Company Research</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Promo Content -->
+      </section>
+      <!-- End Promo Block -->
+    </header>
+    <!-- End Header -->
+
+    <main role="main">
+        <div class="container">
+
+            <section class="u-content-space">
+            <!--<form action="maptest.html" method="post" target="_top">-->
+              <form>
+                <!-- General Form Controls -->
+                <div class="row mb-4">
+                    <!-- Form Controls -->
+                    <div class="col-lg-12 mb-3">
+                      <div class="card">
+                        <!-- Card Header -->
+                        <div class="card-header">
+                          <h3 class="h6 mb-0">Company Research</h3>
+                        </div>
+                        <!-- End Card Header -->
+    
+                        <!-- Card Body -->
+                        <div class="card-body">
+                          <div class="form-group mb-4">
+                            <input type="text"  class="form-control mb-3" placeholder="会社名" name="companyName">
+                            <input type="submit" value="検索" class="form-control btn-outline-primary" id="defaultInput" placeholder="Placeholder">
+                          </div>   
+                        </div>
+                        <!-- End Card Body -->
+                      </div>
+                    </div>
+                    <!-- End Form Controls -->
+                  </div>
+              </form>
+           
+              <div class="card u-box-shadow-sm bg-white rounded">
+                <div class="card-header">
+                <!-- CompanyName -->
+                {% if vname != hname %}
+                  <div class="col-lg-12 ">
+                    <h2 class="h6 text-danger">!検索結果が違います</h2>
+                    <p class="h5">{{ vname }} <span class="h6">- openwork -</span></p>
+                    <p class="h5">{{ hname }} <span class="h6">- カイシャの評判 -</span></p>
+                  </div>
+                {% else %}
+                  <div class="col-lg-12 ">
+                    <h2 class="h4">{{ vname }}</h2>
+                  </div>
+                {% endif %}
+                 
+                </div>
+                <!-- End CompanyName -->
+                <div class="card-body">
+                  <div class="row pl-4">
+                    <!-- Point -->
+                    <div class="col-lg-4 mb-5">
+                      <div class="mb-5 pt-4">
+                        <p class="h3 mb-2">{{ vpoint }} /5</p>
+                        <h2 class="h6 mb-3 ">OpenWork</h2>
+                        <a href={{ vsiteUrl }} target="blank">
+                        <button type="button" class="btn btn-sm btn-outline-primary h5">{{ vname }}</button>
+                        </a>
+                      </div>
+                    <!-- Point -->
+                      <p class="h3 mb-2">{{ hpoint }} /100</p>
+                      <h2 class="h6 mb-3 ">カイシャの評判</h2>
+                      <a href={{ hsiteUrl }} target="blank">
+                      <button type="button" class="btn btn-sm btn-outline-primary h5">{{ hname }}</button>
+                      </a>
+                    </div>
+                    <!-- End Point -->
+                   
+                    <div class="col-lg-6 mb-5">
+                      <p>企業データ</p>
+                      {% if industry == 'データ無し' or jname == ''　%}
+                      <p><strong>情報がありません</strong></p>
+                      {% elif searchWord in jname or vname in jname or hname in jname %}
+                      <table class="table rounded">
+                        <tr class="table-light">
+                          <td style="width:35%">会社名</td>
+                          <td style="width:65%"><strong class="5">{{ jname }}</strong></td>
+                        </tr>
+                        <tr class="table-light">
+                          <td style="width:35%">業種</td>
+                          <td style="width:65%"><strong class="5">{{ industry }}</strong></td>
+                        </tr>
+                        <tr class="table-light">
+                          <td style="width:35%">従業員数</td>
+                          <td style="width:65%"><strong class="5">{{ employees }}</strong></td>
+                        </tr>
+                        <tr class="table-light">
+                          <td style="width:35%">平均年齢</td>
+                          <td style="width:65%"><strong class="5">{{ averageYears }}</strong></td>
+                        </tr>
+                        <tr class="table-light">
+                          <td style="width:35%">平均勤続年数</td>
+                          <td style="width:65%"><strong class="5">{{ averageTerms }}</strong></td>
+                        </tr>
+                        <tr class="table-light">
+                          <td style="width:35%">平均賃金</td>
+                          <td style="width:65%"><strong class="5">{{ averageSalary }}</strong></td>
+                        </tr>
+                      </table>
+                      {% else %}
+                      <p><strong>情報がありません</strong></p>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+    
+        
+        </div>
+    </main>
+{% endblock content %}
